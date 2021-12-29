@@ -6,3 +6,8 @@ What to expect?
 
 * Weird constructs, Elixir noob
 * Weird algorithms, I don't care about them in this case, just trying fancy things in Elixir
+
+``` sh
+$ mix aoc
+$ mix aoc --day 1
+```
