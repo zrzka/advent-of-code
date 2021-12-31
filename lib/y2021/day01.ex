@@ -1,6 +1,10 @@
-# https://adventofcode.com/2021/day/1
+defmodule Aoc.Y2021.Day01 do
+  @moduledoc """
+  --- Day 1: Sonar Sweep ---
 
-defmodule Aoc.Y2021D01 do
+  https://adventofcode.com/2021/day/1
+  """
+
   @behaviour Aoc.Day
 
   @impl true

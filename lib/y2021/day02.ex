@@ -1,6 +1,10 @@
-# https://adventofcode.com/2021/day/2
+defmodule Aoc.Y2021.Day02 do
+  @moduledoc """
+  --- Day 2: Dive! ---
 
-defmodule Aoc.Y2021D02 do
+  https://adventofcode.com/2021/day/2
+  """
+
   @behaviour Aoc.Day
 
   @impl true

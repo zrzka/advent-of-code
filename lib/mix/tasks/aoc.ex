@@ -36,21 +36,22 @@ defmodule Mix.Tasks.Aoc do
       |> String.pad_leading(2, "0")
 
     try do
-      apply(String.to_existing_atom("Elixir.Aoc.Y#{year}D#{fmt_day}"), :results, [
-        "inputs/y#{year}d#{fmt_day}.txt"
-      ])
+      String.to_existing_atom("Elixir.Aoc.Y#{year}.Day#{fmt_day}")
     rescue
       ArgumentError ->
         Mix.shell().info("#{year}-12-#{fmt_day}, part 1: N/A")
         Mix.shell().info("#{year}-12-#{fmt_day}, part 2: N/A")
     else
-      {part1} ->
-        Mix.shell().info("#{year}-12-#{fmt_day}, part 1: #{part1}")
-        Mix.shell().info("#{year}-12-#{fmt_day}, part 2: N/A")
+      func ->
+        case apply(func, :results, ["inputs/#{year}/day#{fmt_day}.txt"]) do
+          {part1} ->
+            Mix.shell().info("#{year}-12-#{fmt_day}, part 1: #{part1}")
+            Mix.shell().info("#{year}-12-#{fmt_day}, part 2: N/A")
 
-      {part1, part2} ->
-        Mix.shell().info("#{year}-12-#{fmt_day}, part 1: #{part1}")
-        Mix.shell().info("#{year}-12-#{fmt_day}, part 2: #{part2}")
+          {part1, part2} ->
+            Mix.shell().info("#{year}-12-#{fmt_day}, part 1: #{part1}")
+            Mix.shell().info("#{year}-12-#{fmt_day}, part 2: #{part2}")
+        end
     end
   end
 end
