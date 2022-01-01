@@ -1,11 +1,11 @@
-# https://adventofcode.com/2021/day/3
-
 defmodule Aoc.Y2021.Day03 do
   @moduledoc """
   --- Day 3: Binary Diagnostic ---
 
   https://adventofcode.com/2021/day/3
   """
+
+  import Aoc.Helpers.Matrix
 
   @behaviour Aoc.Day
 
@@ -98,11 +98,5 @@ defmodule Aoc.Y2021.Day03 do
       |> elem(0)
 
     oxygen_rating * co_rating
-  end
-
-  defp transpose(l) do
-    l
-    |> Enum.zip()
-    |> Enum.map(&Tuple.to_list/1)
   end
 end
