@@ -13,7 +13,35 @@ defmodule Aoc.Y2021.Day04 do
   def results(path) do
     {numbers_to_draw, boards} = parse(path)
 
-    {winning_board_score(boards, numbers_to_draw), 0}
+    {winning_board_score(boards, numbers_to_draw),
+     last_winning_board_score(boards, numbers_to_draw)}
+  end
+
+  defp last_winning_board_score(boards, numbers_to_draw, drawn \\ [], last_score \\ nil) do
+    cond do
+      drawn == [] ->
+        [called | rest] = numbers_to_draw
+        last_winning_board_score(boards, rest, [called], last_score)
+
+      boards == [] ->
+        last_score
+
+      numbers_to_draw == [] ->
+        last_score
+
+      true ->
+        case Enum.filter(boards, &is_winning?(&1, drawn)) do
+          [] ->
+            [called | rest] = numbers_to_draw
+            last_winning_board_score(boards, rest, [called | drawn], last_score)
+
+          winning ->
+            boards = Enum.reject(boards, &is_winning?(&1, drawn))
+            last_score = board_score(Enum.at(winning, -1), drawn)
+            [called | rest] = numbers_to_draw
+            last_winning_board_score(boards, rest, [called | drawn], last_score)
+        end
+    end
   end
 
   defp winning_board_score(boards, numbers_to_draw) do
