@@ -1,4 +1,8 @@
 defmodule Aoc.Helpers.Matrix do
+  @moduledoc """
+  Matrix related helper functions.
+  """
+
   def transpose(m) do
     m
     |> Enum.zip()
